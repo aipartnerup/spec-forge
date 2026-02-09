@@ -5,10 +5,10 @@
   "author": {
     "name": "tercelyi"
   },
-  "homepage": "https://github.com/tercelyi/spec-forge",
+  "homepage": "https://github.com/aipartnerup/spec-forge",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tercelyi/spec-forge.git"
+    "url": "https://github.com/aipartnerup/spec-forge.git"
   },
   "license": "MIT",
   "keywords": [
