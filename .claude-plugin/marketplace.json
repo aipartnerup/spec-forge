@@ -1,0 +1,20 @@
+{
+  "name": "spec-forge-dev",
+  "description": "Development marketplace for Spec Forge specification generation skills",
+  "owner": {
+    "name": "tercel",
+    "email": "tercel.yi@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "spec-forge",
+      "description": "Generate professional-grade software specifications — PRD, SRS, Technical Design, and Test Plan — based on industry standards (Google, Amazon, IEEE). Works standalone or as a full traceability chain.",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "tercel",
+        "email": "tercel.yi@gmail.com"
+      }
+    }
+  ]
+}
