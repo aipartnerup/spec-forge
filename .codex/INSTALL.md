@@ -29,13 +29,15 @@ ln -s "$(pwd)/spec-forge" ~/.agents/skills/spec-forge
 
 ```bash
 ls ~/.agents/skills/spec-forge/commands/
-# Should list: prd.md  srs.md  tech-design.md  test-plan.md
+# Should list: idea.md  prd.md  spec-forge.md  srs.md  tech-design.md  test-plan.md
 ```
 
 ## Usage
 
 Once installed, the following commands are available in Codex:
 
+- `/spec-forge idea <name>` — Interactive brainstorming and demand validation
+- `/spec-forge <name>` — Run full chain (PRD → SRS → Tech Design → Test Plan)
 - `/prd <product/feature name>` — Generate a Product Requirements Document
 - `/srs <feature name>` — Generate a Software Requirements Specification
 - `/tech-design <feature name>` — Generate a Technical Design Document

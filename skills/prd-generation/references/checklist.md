@@ -44,8 +44,8 @@ Use this checklist to validate every generated PRD before delivering it to the u
 - [ ] Requirement IDs follow the PRD-MODULE-NNN naming convention without gaps or duplicates
 - [ ] Priority levels (P0/P1/P2) are applied consistently and every P0 item clearly ties to a stated goal
 - [ ] Every requirement traces back to at least one goal in the Goals section
-- [ ] Personas defined in Section 7 are referenced in the User Stories in Section 8
-- [ ] Success Metrics in Section 12 align with and measure the Goals in Section 6
+- [ ] Personas defined in Section 10 are referenced in the User Stories in Section 11
+- [ ] Success Metrics in Section 15 align with and measure the Goals in Section 9
 
 ## 4. Format Check
 

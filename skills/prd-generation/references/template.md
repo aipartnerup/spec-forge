@@ -286,7 +286,7 @@ graph TD
 gantt
     title Feature Development Timeline
     dateFormat  YYYY-MM-DD
-    axcludeWeekends
+    excludeWeekends
 
     section Design
     User research & analysis    :des1, 2025-01-06, 10d
