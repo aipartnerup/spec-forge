@@ -32,7 +32,7 @@ Before writing a single requirement, the skill scans the current project to buil
 
 ### Step 2: Find the Upstream PRD
 
-The most critical input to any SRS is the Product Requirements Document. The skill automatically searches for a matching PRD file (following the `docs/prd-<feature-name>.md` naming convention) and reads it thoroughly when found. The PRD provides the product vision, user stories, feature definitions, success metrics, and scope boundaries that the SRS must formalize into precise, testable requirements. If no PRD is found, the skill proceeds but flags that traceability to product-level requirements will be limited.
+The most critical input to any SRS is the Product Requirements Document. The skill automatically searches for a matching PRD file (following the `docs/<feature-name>/prd.md` naming convention) and reads it thoroughly when found. The PRD provides the product vision, user stories, feature definitions, success metrics, and scope boundaries that the SRS must formalize into precise, testable requirements. If no PRD is found, the skill proceeds but flags that traceability to product-level requirements will be limited.
 
 ### Step 3: Clarify Questions
 
@@ -120,8 +120,8 @@ The SRS generation skill relies on two reference files:
 
 ## Output Convention
 
-The final SRS document is written to `docs/srs-<feature-name>.md` in the project root, where `<feature-name>` is a sanitized, lowercase, hyphen-separated slug derived from the user's input. The `docs/` directory is created if it does not already exist. This naming convention aligns with the plugin's broader document lifecycle pattern (`prd-`, `srs-`, `tech-design-`, `test-plan-`) and enables automatic upstream document discovery by downstream skills.
+The final SRS document is written to `docs/<feature-name>/srs.md` in the project root, where `<feature-name>` is a sanitized, lowercase, hyphen-separated slug derived from the user's input. The `docs/<feature-name>/` directory is created if it does not already exist. This naming convention places all documents for a feature in a single `docs/<feature-name>/` directory (`prd.md`, `srs.md`, `tech-design.md`, `test-plan.md`) and enables automatic upstream document discovery by downstream skills.
 
 ## Upstream Document Scanning
 
-The skill automatically scans for upstream PRD documents before generation begins. It searches for files matching the `docs/prd-*.md` pattern, identifies the PRD most closely related to the requested feature, and reads it in full. The PRD content informs functional scope, user stories, priorities, success metrics, and scope boundaries. When the PRD is available, the SRS achieves significantly higher traceability and completeness. When it is not available, the skill relies on project context scanning and user clarification to fill the gap, and it notes in the generated document that PRD traceability is incomplete.
+The skill automatically scans for upstream PRD documents before generation begins. It searches for files matching the `docs/*/prd.md` pattern, identifies the PRD most closely related to the requested feature, and reads it in full. The PRD content informs functional scope, user stories, priorities, success metrics, and scope boundaries. When the PRD is available, the SRS achieves significantly higher traceability and completeness. When it is not available, the skill relies on project context scanning and user clarification to fill the gap, and it notes in the generated document that PRD traceability is incomplete.

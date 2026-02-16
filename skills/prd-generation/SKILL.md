@@ -145,10 +145,10 @@ Always read both files before generating a PRD so that any updates to the templa
 The finished PRD is written to:
 
 ```
-docs/prd-<feature-name>.md
+docs/<feature-name>/prd.md
 ```
 
-where `<feature-name>` is a lowercase, hyphen-separated slug derived from the feature name (for example, `docs/prd-user-onboarding.md` or `docs/prd-payment-retry-logic.md`). If the `docs/` directory does not exist, create it. If a file with the same name already exists, confirm with the user before overwriting.
+where `<feature-name>` is a lowercase, hyphen-separated slug derived from the feature name (for example, `docs/user-onboarding/prd.md` or `docs/payment-retry-logic/prd.md`). If the `docs/<feature-name>/` directory does not exist, create it. If a file with the same name already exists, confirm with the user before overwriting.
 
 ## Automatic Project Scanning
 

@@ -46,7 +46,7 @@ Before writing any test documentation, scan the project to build situational awa
 
 The Test Plan must trace every test case back to a requirement. Automatically scan for upstream documents.
 
-1. **Search the `docs/` directory** for files matching patterns like `srs-*.md`, `tech-design-*.md`, `prd-*.md`, or equivalent naming conventions.
+1. **Search the `docs/` directory** for files matching patterns like `*/srs.md`, `*/tech-design.md`, `*/prd.md`, or equivalent naming conventions.
 2. **Extract requirement IDs** (e.g., `FR-XXX-NNN`, `NFR-XXX-NNN`) from the SRS to build the requirements-to-test-cases traceability matrix later.
 3. **Extract component and module names** from the Technical Design to inform test module organization and integration test boundaries.
 4. If no upstream documents are found, inform the user and ask whether to proceed with a standalone test plan or wait until requirements documentation is available.
@@ -240,18 +240,18 @@ Always read both files before generating a Test Plan so that any updates to the 
 The finished Test Plan is written to:
 
 ```
-docs/test-plan-<feature-name>.md
+docs/<feature-name>/test-plan.md
 ```
 
-where `<feature-name>` is a lowercase, hyphen-separated slug derived from the feature name (for example, `docs/test-plan-user-authentication.md` or `docs/test-plan-payment-processing.md`). If the `docs/` directory does not exist, create it. If a file with the same name already exists, confirm with the user before overwriting.
+where `<feature-name>` is a lowercase, hyphen-separated slug derived from the feature name (for example, `docs/user-authentication/test-plan.md` or `docs/payment-processing/test-plan.md`). If the `docs/<feature-name>/` directory does not exist, create it. If a file with the same name already exists, confirm with the user before overwriting.
 
 ## Automatic Scanning for Upstream Documents
 
 Before generating any Test Plan, the skill performs automatic scanning to locate upstream SRS and Technical Design documents:
 
 1. **Glob the project tree** using broad patterns (`**/*`) to understand the directory layout, module boundaries, and naming conventions.
-2. **Search `docs/` for SRS documents** matching patterns like `srs-*.md` to extract functional and non-functional requirement IDs for the traceability matrix.
-3. **Search `docs/` for Technical Design documents** matching patterns like `tech-design-*.md` to extract component architecture, API contracts, and data models that inform integration and system test design.
+2. **Search `docs/` for SRS documents** matching patterns like `*/srs.md` to extract functional and non-functional requirement IDs for the traceability matrix.
+3. **Search `docs/` for Technical Design documents** matching patterns like `*/tech-design.md` to extract component architecture, API contracts, and data models that inform integration and system test design.
 4. **Scan existing test files** in the codebase to understand current test coverage, frameworks in use, and naming conventions so the Test Plan aligns with the team's established practices.
 
 This scanning phase feeds directly into Steps 1 and 2 of the workflow and ensures every generated Test Plan reflects the real state of the project and its requirements rather than generic assumptions.
