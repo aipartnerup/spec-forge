@@ -15,9 +15,10 @@ Software projects need clear specifications. spec-forge covers the full journey 
 | `/spec-forge srs <name>` | Software Requirements Specification | IEEE 830, ISO/IEC/IEEE 29148 |
 | `/spec-forge tech-design <name>` | Technical Design Document | Google Design Doc, RFC Template |
 | `/spec-forge test-plan <name>` | Test Plan & Test Cases | IEEE 829, ISTQB |
+| `/spec-forge decompose <name>` | Decompose project into sub-features | — |
 | `/spec-forge <name>` | **Full chain** — auto-run PRD → SRS → Tech Design → Test Plan | All of the above |
 
-**Aliases**: `/prd`, `/srs`, `/tech-design`, `/test-plan`, `/idea` work as shortcuts.
+**Aliases**: `/prd`, `/srs`, `/tech-design`, `/test-plan`, `/idea`, `/decompose` work as shortcuts.
 
 ## Features
 
@@ -26,6 +27,7 @@ Software projects need clear specifications. spec-forge covers the full journey 
 - **Standalone or Chained**: Use any command on its own, or run the full chain for bidirectional traceability
 - **Industry Standards**: Templates grounded in Google, Amazon, Stripe, IEEE, and ISTQB best practices
 - **Automatic Context Scanning**: Scans your project structure, README, and existing docs before generation
+- **Project Decomposition**: Automatically analyzes scope and splits large projects into sub-features
 - **Smart Upstream Detection**: Finds upstream documents when available; asks compensating questions when not
 - **Quality Checklists**: Built-in 4-tier validation (completeness, quality, consistency, formatting)
 - **Mermaid Diagrams**: Architecture, sequence, user journey, and Gantt diagrams
@@ -58,6 +60,18 @@ Run the complete specification chain in one command:
 - Detects existing documents and resumes from where you left off
 - PRD stage requires user interaction; subsequent stages run with minimal input (chain mode)
 - If an idea draft exists in `ideas/`, uses it as additional context
+
+### `/spec-forge decompose <name>` — Project Decomposition
+
+Analyze project scope and split into sub-features if needed:
+
+```bash
+/spec-forge decompose my-project     # Interview → split analysis → manifest
+```
+
+- Lightweight 3-5 round interview focused on scope boundaries
+- Generates `docs/project-{name}.md` manifest for multi-split projects
+- Automatically invoked as Step 0 when running `/spec-forge <name>` full chain
 
 ### `/spec-forge prd <name>`
 
@@ -117,9 +131,9 @@ Generates a Test Plan & Test Cases document including:
 ```
 /spec-forge idea cool-feature        # Brainstorm (iterative, multi-session)
     ↓ (graduated)
-/spec-forge cool-feature             # Full chain: PRD → SRS → Tech Design → Test Plan
+/spec-forge cool-feature             # Scope analysis → chain(s): PRD → SRS → Tech Design → Test Plan
     ↓
-/forge @docs/tech-design-*.md        # code-forge: break into tasks + execute
+/forge @docs/cool-feature/tech-design.md   # code-forge: break into tasks + execute
 ```
 
 ### Document Traceability (Chain Mode)
@@ -137,11 +151,14 @@ PRD ──traceability──→ SRS ──design input──→ Tech Design ─�
 
 ## Output
 
-All specification documents are written to the `docs/` directory:
-- `docs/prd-<feature-name>.md`
-- `docs/srs-<feature-name>.md`
-- `docs/tech-design-<feature-name>.md`
-- `docs/test-plan-<feature-name>.md`
+Each feature gets its own directory under `docs/`:
+- `docs/<feature-name>/prd.md`
+- `docs/<feature-name>/srs.md`
+- `docs/<feature-name>/tech-design.md`
+- `docs/<feature-name>/test-plan.md`
+
+For decomposed projects, a manifest is also generated:
+- `docs/project-<project-name>.md`
 
 Brainstorming ideas are stored in the project's `ideas/` directory. Add `ideas/` to `.gitignore` to keep them private, or commit for team collaboration.
 
