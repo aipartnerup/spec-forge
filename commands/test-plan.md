@@ -19,7 +19,7 @@ Before anything else, perform a thorough scan of the current project:
 1. Use Glob to scan the project directory tree, focusing on test directories and configuration
 2. Read the project README.md if it exists
 3. Scan the `docs/` directory for existing documents
-4. **Detect** (do NOT read) matching upstream documents: check if `docs/srs-*.md` and `docs/tech-design-*.md` related to "$ARGUMENTS" exist
+4. **Detect** (do NOT read) matching upstream documents: check if `docs/*/srs.md` and `docs/*/tech-design.md` related to "$ARGUMENTS" exist
 5. Use Grep to analyze the codebase:
    - Identify testing frameworks (Jest, pytest, JUnit, Go test, etc.)
    - Identify existing test patterns and conventions
@@ -60,8 +60,8 @@ Collect from Steps 1-2:
 1. **Project context summary**: project structure, tech stack, testing frameworks, test patterns, key findings (concise, ~500 words)
 2. **Mode**: Chain mode or Standalone mode (determined in Step 1)
 3. **Upstream document paths** (chain mode only):
-   - SRS file path: `docs/srs-<name>.md`
-   - Tech Design file path: `docs/tech-design-<name>.md`
+   - SRS file path: `docs/<name>/srs.md`
+   - Tech Design file path: `docs/<name>/tech-design.md`
    - The sub-agent will read these directly
 4. **User answers**: all question-answer pairs from Step 2
 5. **Feature name**: $ARGUMENTS
@@ -101,7 +101,7 @@ Follow every instruction completely. Use REAL database testing (not mocks) for a
 CRITICAL: Follow the Anti-Shortcut Rules strictly. Do not use placeholders instead of concrete test data, mock database operations, write only positive test cases, write vague expected results, or skip data integrity tests.
 
 ## Output
-1. Write the document to `docs/test-plan-{slug}.md`
+1. Write the document to `docs/{slug}/test-plan.md`
 2. Return: file path, 3-5 sentence summary, total TC count, breakdown by type (unit/integration/E2E)
 
 ---
@@ -112,4 +112,4 @@ After the sub-agent returns, present the result to the user and suggest:
 
 1. **Begin implementation and testing** based on the test plan. Use the test cases as the source of truth for writing test code.
 2. **Missing upstream docs?** If you want full traceability, consider running the full spec chain: `/prd` → `/srs` → `/tech-design` → `/test-plan`.
-3. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/tech-design-{slug}.md` to implement features test-first, using this test plan as the guide. If not, use the test cases directly as your TDD starting point.
+3. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/{slug}/tech-design.md` to implement features test-first, using this test plan as the guide. If not, use the test cases directly as your TDD starting point.

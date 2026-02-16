@@ -19,7 +19,7 @@ Before anything else, perform a deep scan of the current project:
 1. Use Glob to scan the full project directory tree to understand architecture and tech stack
 2. Read the project README.md, package.json / requirements.txt / go.mod / Cargo.toml or equivalent
 3. Scan the `docs/` directory for existing documents
-4. **Detect** (do NOT read) matching upstream documents: check if `docs/prd-*.md` and `docs/srs-*.md` related to "$ARGUMENTS" exist
+4. **Detect** (do NOT read) matching upstream documents: check if `docs/*/prd.md` and `docs/*/srs.md` related to "$ARGUMENTS" exist
 5. Use Grep to analyze the codebase:
    - Identify frameworks, libraries, and dependencies
    - Identify existing architectural patterns (MVC, microservices, monolith, etc.)
@@ -66,8 +66,8 @@ Collect from Steps 1-2:
 1. **Project context summary**: project structure, tech stack, architecture patterns, key findings from deep scan (concise, ~500 words)
 2. **Mode**: Chain mode or Standalone mode (determined in Step 1)
 3. **Upstream document paths** (chain mode only):
-   - PRD file path: `docs/prd-<name>.md`
-   - SRS file path: `docs/srs-<name>.md`
+   - PRD file path: `docs/<name>/prd.md`
+   - SRS file path: `docs/<name>/srs.md`
    - The sub-agent will read these directly
 4. **User answers**: all question-answer pairs from Step 2
 5. **Feature name**: $ARGUMENTS
@@ -107,7 +107,7 @@ Follow every instruction completely. Include at least 2 alternative solutions wi
 CRITICAL: Follow the Anti-Shortcut Rules strictly. Do not present only one solution disguised as a comparison, use "handle appropriately" or "validate as needed", omit parameter validation details, draw empty-shell Mermaid diagrams, or write "TBD" without a concrete follow-up plan.
 
 ## Output
-1. Write the document to `docs/tech-design-{slug}.md`
+1. Write the document to `docs/{slug}/tech-design.md`
 2. Return: file path, 3-5 sentence summary, number of components designed, number of API endpoints
 
 ---
@@ -117,4 +117,4 @@ CRITICAL: Follow the Anti-Shortcut Rules strictly. Do not present only one solut
 After the sub-agent returns, present the result to the user and suggest:
 
 1. **Continue the spec chain**: Run `/test-plan` to plan the testing strategy and write test cases based on this design.
-2. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/tech-design-{slug}.md` to break down the design into implementation tasks and execute them. If not, consider breaking the design into development tasks manually.
+2. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/{slug}/tech-design.md` to break down the design into implementation tasks and execute them. If not, consider breaking the design into development tasks manually.

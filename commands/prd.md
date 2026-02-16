@@ -82,7 +82,7 @@ Follow every instruction completely. Generate market research with cited sources
 CRITICAL: Follow the Anti-Shortcut Rules and anti-pseudo-requirement principle strictly. Do not fabricate market data, skip competitive analysis, rubber-stamp feasibility, use vague language, or skip the "What happens if we don't build this?" analysis.
 
 ## Output
-1. Write the document to `docs/prd-{slug}.md`
+1. Write the document to `docs/{slug}/prd.md`
 2. Return: file path, 3-5 sentence summary of the PRD, feature count by priority (P0/P1/P2)
 
 ---
@@ -93,4 +93,4 @@ After the sub-agent returns, present the result to the user and suggest:
 
 1. **Continue the spec chain**: Run `/srs` to transform this PRD into a formal Software Requirements Specification with detailed functional and non-functional requirements.
 2. **Jump to design**: Run `/tech-design` to go directly to technical architecture design (standalone mode will compensate for the missing SRS).
-3. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/prd-{slug}.md` to break down into implementation tasks and execute them. If not, consider breaking the PRD into development tasks manually.
+3. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/{slug}/prd.md` to break down into implementation tasks and execute them. If not, consider breaking the PRD into development tasks manually.

@@ -19,7 +19,7 @@ Before anything else, scan the current project to understand context:
 1. Use Glob to scan the project directory tree (top 3 levels)
 2. Read the project README.md if it exists
 3. Scan the `docs/` directory for existing documents
-4. **Detect** (do NOT read) matching PRD document: check if `docs/prd-*.md` related to "$ARGUMENTS" exists
+4. **Detect** (do NOT read) matching PRD document: check if `docs/*/prd.md` related to "$ARGUMENTS" exists
 5. Use Grep to search for relevant code, APIs, data models related to "$ARGUMENTS"
 
 **Determine mode based on upstream discovery:**
@@ -54,7 +54,7 @@ After receiving user answers, assemble and launch a generation sub-agent.
 Collect from Steps 1-2:
 1. **Project context summary**: project structure, tech stack, key findings from scanning (concise, ~500 words)
 2. **Mode**: Chain mode or Standalone mode (determined in Step 1)
-3. **Upstream document path** (chain mode only): PRD file path `docs/prd-<name>.md` — the sub-agent will read it directly
+3. **Upstream document path** (chain mode only): PRD file path `docs/<name>/prd.md` — the sub-agent will read it directly
 4. **User answers**: all question-answer pairs from Step 2
 5. **Feature name**: $ARGUMENTS
 
@@ -90,7 +90,7 @@ Follow every instruction completely. Generate FR-<MODULE>-<NNN> formatted functi
 CRITICAL: Follow the Anti-Shortcut Rules strictly. Do not copy-paste PRD content as requirements, skip alternative flows, use vague verbs, omit boundary conditions, or write untestable requirements.
 
 ## Output
-1. Write the document to `docs/srs-{slug}.md`
+1. Write the document to `docs/{slug}/srs.md`
 2. Return: file path, 3-5 sentence summary, FR count, NFR count
 
 ---
@@ -101,4 +101,4 @@ After the sub-agent returns, present the result to the user and suggest:
 
 1. **Continue the spec chain**: Run `/tech-design` to design the technical architecture based on these requirements.
 2. **Jump to testing**: Run `/test-plan` to go directly to test planning (standalone mode will compensate for the missing tech design).
-3. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/srs-{slug}.md` to convert SRS requirements into implementation tasks and execute them. If not, consider breaking the requirements into development tasks manually.
+3. **Ready to implement?** If the [code-forge](https://github.com/tercel/code-forge) plugin is installed, use `/forge @docs/{slug}/srs.md` to convert SRS requirements into implementation tasks and execute them. If not, consider breaking the requirements into development tasks manually.
